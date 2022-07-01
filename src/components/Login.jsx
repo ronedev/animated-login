@@ -12,18 +12,18 @@ import {
   InputGroup,
   InputRightElement,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 import { passwordImages, writingImages } from "../utils/images";
 
 const Login = () => {
-
-    const imagesInitialValue = passwordImages[0]
+  const imagesInitialValue = passwordImages[0];
 
   const [images, setImages] = useState(imagesInitialValue);
   const [show, setShow] = useState(false);
   const [formValues, setFormValues] = useState({ email: "", password: "" });
 
-  const { isOpen, onOpen, onClose } = useDisclosure({ defaultIsOpen: false });
+  const toast = useToast();
 
   const handleEmail = (e) => {
     setImages(
@@ -37,9 +37,9 @@ const Login = () => {
     }));
   };
 
-  const handleEmailBlur = ()=>{
-    setImages(imagesInitialValue)
-  }
+  const handleEmailBlur = () => {
+    setImages(imagesInitialValue);
+  };
 
   const handlePassword = (e) => {
     setFormValues((prevValues) => ({
@@ -68,7 +68,14 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setImages(imagesInitialValue);
-    onOpen()
+    toast({
+      title: "Success!",
+      description: "You have logged successfully!",
+      status: "success",
+      duration: 6000,
+      position: 'top',
+      isClosable: true,
+    });
     console.log(formValues);
   };
 
@@ -140,24 +147,6 @@ const Login = () => {
             Login
           </Button>
         </form>
-        {isOpen && (
-            <Alert status='success' mt={2}>
-            <AlertIcon />
-            <Box>
-              <AlertTitle>Success!</AlertTitle>
-              <AlertDescription>
-              You have successfully logged!
-              </AlertDescription>
-            </Box>
-            <CloseButton
-              alignSelf='flex-start'
-              position='relative'
-              right={-1}
-              top={-1}
-              onClick={onClose}
-            />
-          </Alert>
-        )}
       </Box>
     </Box>
   );
