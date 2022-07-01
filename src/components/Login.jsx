@@ -85,7 +85,7 @@ const Login = () => {
 
   return (
     <Box
-      p={20}
+      p={[10, 20]}
       bg="white"
       borderRadius={15}
       display="grid"
@@ -93,8 +93,8 @@ const Login = () => {
       justifyItems="center"
       gap={4}
     >
-      <Box bg="#1d9bf0" p={2} borderRadius={100} w="120px">
-        <Image src={images} alt="avatar" w="120px" />
+      <Box bg="#1d9bf0" p={2} borderRadius={100} w={["80px","120px", "150px"]}>
+        <Image src={images} alt="avatar" />
       </Box>
       <Box>
         <form
@@ -113,7 +113,7 @@ const Login = () => {
             value={formValues.email}
             onChange={handleEmail}
             onBlur={handleEmailBlur}
-            w="300px"
+            w={['s', 'ms', 'md']}
           />
           <InputGroup>
             <Input
